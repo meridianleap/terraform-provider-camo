@@ -19,6 +19,6 @@ resource "camo_data" "test" {
   # `triggers_replace` is not appropriate. Instead, store it in input_sensitive.
   provisioner "local-exec" {
     when    = destroy
-    command = "echo \"I only run when terraform_data.foo is destroyed.\""
+    command = "echo \"I only run when the triggers are changed.\""
   }
 }
