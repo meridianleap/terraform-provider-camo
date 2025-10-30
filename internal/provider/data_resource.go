@@ -101,7 +101,7 @@ func (r *dataResource) Configure(_ context.Context, req resource.ConfigureReques
 	if !ok {
 		resp.Diagnostics.AddError(
 			"Unexpected Data Source Configure Type",
-			fmt.Sprintf("Expected func() uuid.UUID, got: %T. Please report this issue to the provider developers.", req.ProviderData),
+			fmt.Sprintf("Expected resourceData, got: %T. Please report this issue to the provider developers.", req.ProviderData),
 		)
 
 		return
@@ -110,7 +110,7 @@ func (r *dataResource) Configure(_ context.Context, req resource.ConfigureReques
 	r.uuidFunc = rd.uuidFunc
 }
 
-// Create creates the resource and sets the initial Terraform state.
+// Create creates the resource and sets the initial state.
 func (r *dataResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	// Read the provided plan variables into our struct, check for issues.
 	var plan dataResourceModel
@@ -134,12 +134,12 @@ func (r *dataResource) Create(ctx context.Context, req resource.CreateRequest, r
 	}
 }
 
-// Read refreshes the Terraform state with the latest data.
+// Read refreshes the state with the latest data.
 func (r *dataResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 	// All state is local, so this is a no-op.
 }
 
-// Update updates the resource and sets the updated Terraform state on success.
+// Update updates the resource and sets the updated state on success.
 func (r *dataResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 	// Retrieve values from plan
 	var plan dataResourceModel
@@ -160,11 +160,15 @@ func (r *dataResource) Update(ctx context.Context, req resource.UpdateRequest, r
 	}
 }
 
-// Delete deletes the resource and removes the Terraform state on success.
+// Delete deletes the resource and removes the state on success.
 func (r *dataResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 	// No side effect, just remove from state.
 }
 
+// ModifyPlan updates the plan to match the expected result after apply. In the
+// case of this resource, that means setting the outputs equal to the inputs,
+// and checking to see if the triggers_replace values are being changed, which
+// would cause the resource to be destroyed and recreated.
 func (r *dataResource) ModifyPlan(ctx context.Context, req resource.ModifyPlanRequest, resp *resource.ModifyPlanResponse) {
 	// Nothing to do on destroy
 	if req.Plan.Raw.IsNull() {
