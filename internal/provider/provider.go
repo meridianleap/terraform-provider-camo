@@ -37,7 +37,10 @@ func (p *camoProvider) Metadata(ctx context.Context, req provider.MetadataReques
 }
 
 func (p *camoProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
-	resp.Schema = schema.Schema{}
+	resp.Schema = schema.Schema{
+		Description:         "This provider addresses a shortcoming of terraform_data where sensitive values are output as plain text in the plan.",
+		MarkdownDescription: "This provider addresses a shortcoming of `terraform_data` where sensitive values are output as plain text in the `plan.`",
+	}
 }
 
 func (p *camoProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {

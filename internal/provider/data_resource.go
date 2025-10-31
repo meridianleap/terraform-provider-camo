@@ -50,8 +50,8 @@ func (r *dataResource) Metadata(_ context.Context, req resource.MetadataRequest,
 // Schema defines the schema for the resource.
 func (r *dataResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		Description:         "Persists arbitrary input values to state for later retrieval. Mimics the functionality of the terraform_data builtin resource, but with added functionality for storing sensitive inputs.",
-		MarkdownDescription: "Persists arbitrary input values to state for later retrieval. Mimics the functionality of the `terraform_data` builtin resource, but with added functionality for storing sensitive inputs.",
+		Description:         "Mimics the functionality of the terraform_data builtin resource, but with added attributes for storing sensitive inputs.",
+		MarkdownDescription: "Mimics the functionality of the `terraform_data` builtin resource, but with added attributes for storing sensitive inputs.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:   "A string value unique to the resource instance.",
