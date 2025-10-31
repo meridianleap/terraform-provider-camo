@@ -12,7 +12,7 @@ safely to avoid leaks.
 See generated docs.
 
 Installing is the same as for any provider on the Terraform registry:
-```
+```hcl
 terraform {
   required_providers {
     camo = {
