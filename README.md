@@ -11,6 +11,18 @@ safely to avoid leaks.
 ## Using the provider
 See generated docs.
 
+Installing is the same as for any provider on the Terraform registry:
+```
+terraform {
+  required_providers {
+    camo = {
+      source  = "meridianleap/camo"
+      version = "<desired_version>"
+    }
+  }
+}
+```
+
 ## Requirements
 
 - [OpenTofu](https://opentofu.org/docs/intro/install/) >= 1.0 or [Terraform](https://developer.hashicorp.com/terraform/downloads) >= 1.0
