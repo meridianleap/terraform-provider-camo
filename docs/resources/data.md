@@ -186,11 +186,8 @@ Running `apply` again should be a no-op.
 
 ### Optional
 
-> **NOTE**: [Write-only arguments](https://developer.hashicorp.com/terraform/language/resources/ephemeral#write-only-arguments) are supported in Terraform 1.11 and later.
-
 - `input` (Dynamic) A value which will be stored in the instance state, and reflected in the `output` attribute after apply.
 - `input_sensitive` (Dynamic, Sensitive) A value which will be stored in the instance state, and reflected as a sensitive value in the `output_sensitive` attribute after apply.
-- `input_wo` (Dynamic, [Write-only](https://developer.hashicorp.com/terraform/language/resources/ephemeral#write-only-arguments)) A value needed by this block, but which will not be stored in the instance state. Can be used for sensitive values that are not related to state.
 - `triggers_replace` (Dynamic) A value that is stored in the instance state and will force replacement when the value changes.
 
 ### Read-Only
