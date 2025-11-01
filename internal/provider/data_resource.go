@@ -39,6 +39,7 @@ type dataResourceModel struct {
 	Output          types.Dynamic `tfsdk:"output"`
 	InputSensitive  types.Dynamic `tfsdk:"input_sensitive"`
 	OutputSensitive types.Dynamic `tfsdk:"output_sensitive"`
+	InputWO         types.Dynamic `tfsdk:"input_wo"`
 	TriggersReplace types.Dynamic `tfsdk:"triggers_replace"`
 }
 
@@ -79,6 +80,11 @@ func (r *dataResource) Schema(_ context.Context, _ resource.SchemaRequest, resp 
 				MarkdownDescription: "The sensitive computed value derived from the `input_sensitive` argument. During a plan where `output_sensitive` is unknown, it will still be of the same type as `input_sensitive`.",
 				Computed:            true,
 				Sensitive:           true,
+			},
+			"input_wo": schema.DynamicAttribute{
+				Description: "A value needed by this block, but which will not be stored in the instance state. Can be used for sensitive values that are not related to state.",
+				Optional:    true,
+				WriteOnly:   true,
 			},
 			"triggers_replace": schema.DynamicAttribute{
 				Description: "A value that is stored in the instance state and will force replacement when the value changes.",
